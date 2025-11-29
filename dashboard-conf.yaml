@@ -1,0 +1,832 @@
+title: Control Central
+views:
+  - path: control
+    title: Inicio
+    panel: true
+    background: >-
+      url('https://konachan.com/jpeg/244f81f3f3f820e82c989e69a8e0498f/Konachan.com%20-%20365923%202girls%20ass%20ass_grab%20beach%20bikini%20blush%20breasts%20cameltoe%20collar%20cosplay%20dark_skin%20foxgirl%20jagoo%20loli%20pink_hair%20sideboob%20sunset%20swimsuit%20tail%20wristwear.jpg')
+      center/cover fixed
+    type: custom:grid-layout
+    layout:
+      grid-template-columns: 1fr 1fr 1fr
+      grid-template-rows: auto auto auto
+      grid-gap: 10px
+    cards:
+      - type: vertical-stack
+        card_mod:
+          style: |
+            ha-card {
+              background: rgb(28, 28, 28, 0.4) !important;
+            }
+        cards:
+          - type: custom:mushroom-title-card
+            title: Control Central
+            subtitle: '{{ now().strftime(''%H:%M'') }}'
+            alignment: start
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgb(28, 28, 28, 0.4) !important;
+                  box-shadow: none;
+                  padding: 4px 12px !important;
+                }
+                .title {
+                  font-size: 32px !important;
+                  font-weight: bold !important;
+                  line-height: 1 !important;
+                }
+                .subtitle {
+                  font-size: 22px !important;
+                  line-height: 1 !important;
+                  margin-top: 4px !important;
+                }
+          - type: weather-forecast
+            entity: weather.forecast_casa
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: >-
+              {{ ((states('sensor.contacto_inteligente_1_consumo_de_este_mes') |
+              float(0)) +
+              (states('sensor.contacto_inteligente_2_consumo_de_este_mes') |
+              float(0)) +
+              (states('sensor.contacto_inteligente_3_consumo_de_este_mes') |
+              float(0)) +
+              (states('sensor.contacto_inteligente_4_consumo_de_este_mes') |
+              float(0)) +
+              (states('sensor.contacto_inteligente_5_consumo_de_este_mes') |
+              float(0))) | round(2) }} kWh
+            secondary: Consumo Total Mes
+            icon: mdi:lightning-bolt
+            icon_color: '#ffb300'
+            layout: horizontal
+            tap_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: '{{ states(''sensor.exterior_bateria'') }}%'
+            secondary: Batería Sensor Ext
+            icon: mdi:battery
+            icon_color: '#2ecc71'
+            layout: horizontal
+            tap_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: '{{ states(''sensor.contact_sensor_bateria'') }}%'
+            secondary: Batería Puerta
+            icon: mdi:battery
+            icon_color: '#4d96ff'
+            layout: horizontal
+            tap_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: >-
+              {% if states('binary_sensor.contact_sensor_puerta') == 'on'
+              %}Abierta{% else %}Cerrada{% endif %}
+            secondary: Estado Puerta
+            icon: mdi:door
+            icon_color: >-
+              {% if states('binary_sensor.contact_sensor_puerta') == 'on'
+              %}#ff6b6b{% else %}#2ecc71{% endif %}
+            layout: horizontal
+            tap_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+      - type: vertical-stack
+        card_mod:
+          style: |
+            ha-card {
+              grid-column: span 1;
+              background: rgba(255,255,255,0.1);
+              backdrop-filter: blur(10px);
+              border-radius: 16px;
+              padding: 6px !important;
+            }
+        cards:
+          - type: custom:mushroom-title-card
+            title: 🌡️ Clima
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px !important;
+                }
+                .title {
+                  font-size: 26px !important;
+                  line-height: 1.2 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: '{{ states(''sensor.sala_de_estar_temperatura'') }}°C'
+            secondary: Sala - Temp
+            icon: mdi:thermometer
+            icon_color: '#ff6b6b'
+            layout: horizontal
+            tap_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: '{{ states(''sensor.sala_de_estar_humedad'') }}%'
+            secondary: Sala - Humedad
+            icon: mdi:water-percent
+            icon_color: '#4d96ff'
+            layout: horizontal
+            tap_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: '{{ states(''sensor.habitacion_temperatura'') }}°C'
+            secondary: Hab - Temp
+            icon: mdi:thermometer
+            icon_color: '#9b59b6'
+            layout: horizontal
+            tap_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: '{{ states(''sensor.habitacion_humedad'') }}%'
+            secondary: Hab - Humedad
+            icon: mdi:water-percent
+            icon_color: '#2ecc71'
+            layout: horizontal
+            tap_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: '{{ states(''sensor.exterior_temperatura'') }}°C'
+            secondary: Ext - Temp
+            icon: mdi:thermometer
+            icon_color: '#f39c12'
+            layout: horizontal
+            tap_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: '{{ states(''sensor.exterior_humedad'') }}%'
+            secondary: Ext - Humedad
+            icon: mdi:water-percent
+            icon_color: '#3498db'
+            layout: horizontal
+            tap_action:
+              action: none
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+      - type: vertical-stack
+        card_mod:
+          style: |
+            ha-card {
+              grid-column: span 1;
+              background: rgba(255,255,255,0.1);
+              backdrop-filter: blur(10px);
+              border-radius: 16px;
+              padding: 6px !important;
+            }
+        cards:
+          - type: custom:mushroom-title-card
+            title: 🔌 Enchufes
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px !important;
+                }
+                .title {
+                  font-size: 26px !important;
+                  line-height: 1.2 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: Enchufe 1
+            secondary: '{{ states(''sensor.contacto_inteligente_1_consumo_actual'') }}W'
+            icon: mdi:power-socket
+            icon_color: >-
+              {% if states('switch.contacto_inteligente_1') == 'on' %}#ff6b6b{%
+              else %}#cccccc{% endif %}
+            layout: horizontal
+            double_tap_action:
+              action: call-service
+              service: switch.toggle
+              service_data:
+                entity_id: switch.contacto_inteligente_1
+            tap_action:
+              action: call-service
+              service: persistent_notification.create
+              data:
+                message: >-
+                  ¿Deseas cambiar el estado de Enchufe 1? (Doble click para
+                  confirmar)
+                title: Confirmar cambio
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: Enchufe 2
+            secondary: >-
+              {{ states('sensor.contacto_inteligente_2_consumo_actual') |
+              default('N/A') }}W
+            icon: mdi:power-socket
+            icon_color: >-
+              {% if states('switch.contacto_inteligente_2') == 'on' %}#4d96ff{%
+              else %}#cccccc{% endif %}
+            layout: horizontal
+            double_tap_action:
+              action: call-service
+              service: switch.toggle
+              service_data:
+                entity_id: switch.contacto_inteligente_2
+            tap_action:
+              action: call-service
+              service: persistent_notification.create
+              data:
+                message: >-
+                  ¿Deseas cambiar el estado de Enchufe 2? (Doble click para
+                  confirmar)
+                title: Confirmar cambio
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: Enchufe 3
+            secondary: '{{ states(''sensor.contacto_inteligente_3_consumo_actual'') }}W'
+            icon: mdi:power-socket
+            icon_color: >-
+              {% if states('switch.contacto_inteligente_3') == 'on' %}#9b59b6{%
+              else %}#cccccc{% endif %}
+            layout: horizontal
+            double_tap_action:
+              action: call-service
+              service: switch.toggle
+              service_data:
+                entity_id: switch.contacto_inteligente_3
+            tap_action:
+              action: call-service
+              service: persistent_notification.create
+              data:
+                message: >-
+                  ¿Deseas cambiar el estado de Enchufe 3? (Doble click para
+                  confirmar)
+                title: Confirmar cambio
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: Enchufe 4
+            secondary: >-
+              {{ states('sensor.contacto_inteligente_4_consumo_actual') |
+              default('N/A') }}W
+            icon: mdi:power-socket
+            icon_color: >-
+              {% if states('switch.contacto_inteligente_4') == 'on' %}#2ecc71{%
+              else %}#cccccc{% endif %}
+            layout: horizontal
+            double_tap_action:
+              action: call-service
+              service: switch.toggle
+              service_data:
+                entity_id: switch.contacto_inteligente_4
+            tap_action:
+              action: call-service
+              service: persistent_notification.create
+              data:
+                message: >-
+                  ¿Deseas cambiar el estado de Enchufe 4? (Doble click para
+                  confirmar)
+                title: Confirmar cambio
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: Enchufe 5
+            secondary: '{{ states(''sensor.contacto_inteligente_5_consumo_actual'') }}W'
+            icon: mdi:power-socket
+            icon_color: >-
+              {% if states('switch.contacto_inteligente_5') == 'on' %}#f39c12{%
+              else %}#cccccc{% endif %}
+            layout: horizontal
+            double_tap_action:
+              action: call-service
+              service: switch.toggle
+              service_data:
+                entity_id: switch.contacto_inteligente_5
+            tap_action:
+              action: call-service
+              service: persistent_notification.create
+              data:
+                message: >-
+                  ¿Deseas cambiar el estado de Enchufe 5? (Doble click para
+                  confirmar)
+                title: Confirmar cambio
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+          - type: custom:mushroom-template-card
+            primary: Smart Plug
+            secondary: '{{ states(''switch.smart_plug_enchufe_1'') }}'
+            icon: mdi:power-socket
+            icon_color: >-
+              {% if states('switch.smart_plug_enchufe_1') == 'on' %}#e74c3c{%
+              else %}#cccccc{% endif %}
+            layout: horizontal
+            double_tap_action:
+              action: call-service
+              service: switch.toggle
+              service_data:
+                entity_id: switch.smart_plug_enchufe_1
+            tap_action:
+              action: call-service
+              service: persistent_notification.create
+              data:
+                message: >-
+                  ¿Deseas cambiar el estado de Smart Plug? (Doble click para
+                  confirmar)
+                title: Confirmar cambio
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px 8px !important;
+                  height: 56px !important;
+                }
+                mushroom-shape-icon {
+                  --icon-size: 38px !important;
+                }
+                .container {
+                  display: flex !important;
+                  align-items: flex-start !important;
+                  justify-content: center !important;
+                  height: 100% !important;
+                }
+                .primary {
+                  font-size: 22px !important;
+                  font-weight: 700 !important;
+                  line-height: 1.1 !important;
+                }
+                .secondary {
+                  font-size: 15px !important;
+                  line-height: 1.1 !important;
+                  opacity: 0.9 !important;
+                }
+      - type: vertical-stack
+        card_mod:
+          style: |
+            ha-card {
+              grid-column: span 1;
+              background: rgba(255,255,255,0.1);
+              backdrop-filter: blur(10px);
+              border-radius: 16px;
+              padding: 6px !important;
+            }
+        cards:
+          - type: custom:mushroom-title-card
+            title: 💡 Lámparas
+            alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgb(28, 28, 28, 0.4) !important;
+                  padding: 4px !important;
+                }
+                .title {
+                  font-size: 26px !important;
+                  line-height: 1.2 !important;
+                }
+          - type: horizontal-stack
+            cards:
+              - type: custom:mushroom-light-card
+                entity: light.foco_inteligente_1
+                name: Lámpara 1
+                icon: mdi:ceiling-light
+                layout: vertical
+                show_brightness_control: true
+                use_light_color: true
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: rgb(28, 28, 28, 0.4) !important;
+                      padding: 4px !important;
+                    }
+                    mushroom-shape-icon {
+                      --icon-size: 42px !important;
+                    }
+                    .primary {
+                      font-size: 18px !important;
+                      font-weight: 600 !important;
+                      line-height: 1.1 !important;
+                    }
+              - type: custom:mushroom-light-card
+                entity: light.foco_inteligente_2
+                name: Lámpara 2
+                icon: mdi:wall-sconce
+                layout: vertical
+                show_brightness_control: true
+                use_light_color: true
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: rgb(28, 28, 28, 0.4) !important;
+                      padding: 4px !important;
+                    }
+                    mushroom-shape-icon {
+                      --icon-size: 42px !important;
+                    }
+                    .primary {
+                      font-size: 18px !important;
+                      font-weight: 600 !important;
+                      line-height: 1.1 !important;
+                    }
+              - type: custom:mushroom-light-card
+                entity: light.foco_inteligente_3
+                name: Lámpara 3
+                icon: mdi:lamp
+                layout: vertical
+                show_brightness_control: true
+                use_light_color: true
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: rgb(28, 28, 28, 0.4) !important;
+                      padding: 4px !important;
+                    }
+                    mushroom-shape-icon {
+                      --icon-size: 42px !important;
+                    }
+                    .primary {
+                      font-size: 18px !important;
+                      font-weight: 600 !important;
+                      line-height: 1.1 !important;
+                    }
+wallpanel:
+  enabled: true
+  hide_toolbar: true
+  hide_sidebar: true
+  fullscreen: false
+  idle_time: 0
