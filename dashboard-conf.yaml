@@ -451,7 +451,7 @@ views:
                   line-height: 1.2 !important;  
                 }  
           - type: custom:mushroom-template-card
-            primary: Enchufe 1
+            primary: PC + TV
             secondary: '{{ states(''sensor.contacto_inteligente_1_consumo_actual'') }}W'
             icon: mdi:power-socket
             icon_color: >-
@@ -468,7 +468,7 @@ views:
               service: persistent_notification.create
               data:
                 message: >-
-                  ¿Deseas cambiar el estado de Enchufe 1? (Doble click para  
+                  ¿Deseas cambiar el estado de PC + TV? (Doble click para  
                   confirmar)  
                 title: Confirmar cambio
             card_mod:
@@ -498,7 +498,7 @@ views:
                   opacity: 0.9 !important;  
                 }  
           - type: custom:mushroom-template-card
-            primary: Enchufe 2
+            primary: Ventilador o Estufa
             secondary: >-
               {{ states('sensor.contacto_inteligente_2_consumo_actual') |  
               default('N/A') }}W  
@@ -517,7 +517,7 @@ views:
               service: persistent_notification.create
               data:
                 message: >-
-                  ¿Deseas cambiar el estado de Enchufe 2? (Doble click para  
+                  ¿Deseas cambiar el estado de Ventilador o Estufa? (Doble click para  
                   confirmar)  
                 title: Confirmar cambio
             card_mod:
@@ -547,7 +547,7 @@ views:
                   opacity: 0.9 !important;  
                 }  
           - type: custom:mushroom-template-card
-            primary: Enchufe 3
+            primary: Oficina
             secondary: '{{ states(''sensor.contacto_inteligente_3_consumo_actual'') }}W'
             icon: mdi:power-socket
             icon_color: >-
@@ -564,7 +564,7 @@ views:
               service: persistent_notification.create
               data:
                 message: >-
-                  ¿Deseas cambiar el estado de Enchufe 3? (Doble click para  
+                  ¿Deseas cambiar el estado de Oficina? (Doble click para  
                   confirmar)  
                 title: Confirmar cambio
             card_mod:
@@ -594,7 +594,7 @@ views:
                   opacity: 0.9 !important;  
                 }  
           - type: custom:mushroom-template-card
-            primary: Enchufe 4
+            primary: Proyector
             secondary: >-
               {{ states('sensor.contacto_inteligente_4_consumo_actual') |  
               default('N/A') }}W  
@@ -613,7 +613,7 @@ views:
               service: persistent_notification.create
               data:
                 message: >-
-                  ¿Deseas cambiar el estado de Enchufe 4? (Doble click para  
+                  ¿Deseas cambiar el estado de Proyector? (Doble click para  
                   confirmar)  
                 title: Confirmar cambio
             card_mod:
@@ -643,7 +643,7 @@ views:
                   opacity: 0.9 !important;  
                 }  
           - type: custom:mushroom-template-card
-            primary: Enchufe 5
+            primary: Mini PC + Disco duro + RPI + Sensor T
             secondary: '{{ states(''sensor.contacto_inteligente_5_consumo_actual'') }}W'
             icon: mdi:power-socket
             icon_color: >-
@@ -660,7 +660,7 @@ views:
               service: persistent_notification.create
               data:
                 message: >-
-                  ¿Deseas cambiar el estado de Enchufe 5? (Doble click para  
+                  ¿Deseas cambiar el estado de Mini PC + Disco duro + RPI + Sensor T? (Doble click para  
                   confirmar)  
                 title: Confirmar cambio
             card_mod:
@@ -690,7 +690,7 @@ views:
                   opacity: 0.9 !important;  
                 }  
           - type: custom:mushroom-template-card
-            primary: Smart Plug
+            primary: TV
             secondary: '{{ states(''switch.smart_plug_enchufe_1'') }}'
             icon: mdi:power-socket
             icon_color: >-
@@ -707,7 +707,7 @@ views:
               service: persistent_notification.create
               data:
                 message: >-
-                  ¿Deseas cambiar el estado de Smart Plug? (Doble click para  
+                  ¿Deseas cambiar el estado de TV? (Doble click para  
                   confirmar)  
                 title: Confirmar cambio
             card_mod:
@@ -825,9 +825,10 @@ views:
                       font-weight: 600 !important;  
                       line-height: 1.1 !important;  
                     }  
-      - type: vertical-stack
-        card_mod:
-          style: |
+
+      - type: vertical-stack  
+        card_mod:  
+          style: |  
             ha-card {  
               grid-column: span 1;  
               background: rgba(255,255,255,0.1);  
@@ -835,12 +836,12 @@ views:
               border-radius: 16px;  
               padding: 6px !important;  
             }  
-        cards:
-          - type: custom:mushroom-title-card
-            title: 📝 Notas Rápidas
-            alignment: center
-            card_mod:
-              style: |
+        cards:  
+          - type: custom:mushroom-title-card  
+            title: 📝 Notas Rápidas  
+            alignment: center  
+            card_mod:  
+              style: |  
                 ha-card {  
                   background: rgb(28, 28, 28, 0.4) !important;  
                   padding: 4px !important;  
@@ -849,13 +850,13 @@ views:
                   font-size: 22px !important;  
                   line-height: 1.2 !important;  
                 }  
-          - type: custom:lovelace-multiline-text-input-card
-            entity: input_text.dashboard_notes
-            autosave: true
-            max_length: 500
-            placeholder_text: Escribe tus notas aquí...
-            card_mod:
-              style: |
+          - type: custom:lovelace-multiline-text-input-card  
+            entity: input_text.dashboard_notes  
+            autosave: true  
+            max_length: 500  
+            placeholder_text: Escribe tus notas aquí...  
+            card_mod:  
+              style: |  
                 ha-card {  
                   background: rgb(28, 28, 28, 0.4) !important;  
                   padding: 8px !important;  
